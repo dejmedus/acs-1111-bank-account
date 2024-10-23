@@ -40,3 +40,11 @@ class BankAccount:
         self.full_name = full_name
         self.account_number = account_number
         self.balance = balance
+
+    def deposit(self, amount):
+        self.balance += amount
+        print(f"Amount deposited: ${amount} new balance: ${self.balance}")
+
+    def withdraw(self, amount):
+        self.balance -= amount
+        print(f"Amount withdrawn: ${amount} new balance: ${self.balance}")

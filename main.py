@@ -4,8 +4,10 @@ from bank_account import BankAccount
 mitchell_account = BankAccount("Mitchell", 31415920)
 
 # Deposit $400,000 into "Mitchell's" account.
+mitchell_account.deposit(400000)
 # Print a statement
 # Add interest to the account
 # Print a statement
 # Make a withdrawl of $150 (Mitchell needs some Yeezy's)
+mitchell_account.withdraw(150)
 # Print a statement
