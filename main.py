@@ -1,6 +1,8 @@
 from bank_account import BankAccount
 
-# Create a new bank account instance: user: "Mitchell", account number: 03141592.
+# Create a new bank account instance
+mitchell_account = BankAccount("Mitchell", 31415920)
+
 # Deposit $400,000 into "Mitchell's" account.
 # Print a statement
 # Add interest to the account
