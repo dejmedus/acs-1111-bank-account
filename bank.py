@@ -4,7 +4,7 @@ from bank_account import BankAccount
 
 class Bank():
     """
-A class to represent a bank account.
+A class to represent a bank.
 
 ...
 
@@ -12,13 +12,13 @@ Attributes
 ----------
 name : str
   name of the bank
-accounts : list of accounts
+accounts : dict of accounts
    all bank member accounts
 
 Methods
 -------
-add_member():
-    add new member bank account
+create_account():
+    add new member account
 
 add_interest():
     add interest to all account balances
@@ -37,7 +37,7 @@ withdraw(account_number, amount):
         self.name = name
         self.accounts = {}
 
-    def add_member(self, full_name, account_number=str(uuid.uuid4())[:8]):
+    def create_account(self, full_name, account_number=str(uuid.uuid4())[:8]):
 
         if len(full_name.strip()) == 0:
             raise Exception("Please enter a full name")
