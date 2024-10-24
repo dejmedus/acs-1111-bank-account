@@ -1,3 +1,5 @@
+import uuid
+
 
 class BankAccount:
     """
@@ -9,8 +11,8 @@ class BankAccount:
    ----------
    full_name : str
       full name of the bank account owner
-   account_number : int
-       8-digit bank account number
+   account_number : uuid
+        bank account number
    balance : float
        current balance
 
@@ -36,9 +38,9 @@ class BankAccount:
         display account name, account number, and balance
    """
 
-    def __init__(self, full_name, account_number, balance=0):
+    def __init__(self, full_name, account_number=None, balance=0):
         self.full_name = full_name
-        self.account_number = account_number
+        self.account_number = uuid.uuid4()
         self.balance = balance
 
     def deposit(self, amount):
@@ -47,18 +49,19 @@ class BankAccount:
 
     def withdraw(self, amount):
         self.balance -= amount
-        print(f"Amount withdrawn: ${amount} new balance: ${self.balance}")
+        print(f"Amount withdrawn: ${amount} New balance: ${self.balance}")
 
     def get_balance(self):
         print(f"Current balance: ${self.balance}")
         return self.balance
 
     def add_interest(self, interest=0.00083):
-        pass
+        accrued_amount = self.balance * interest
+        self.balance += accrued_amount
 
     def print_statement(self):
         print(f"""
 {self.full_name}
-Account No.: ****{str(self.account_number)[3:]}
+Account No.: ****{str(self.account_number)[30:]}
 Balance: ${self.balance}
 """)

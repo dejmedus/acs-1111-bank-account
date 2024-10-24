@@ -10,6 +10,7 @@ mitchell_account.deposit(400000)
 mitchell_account.print_statement()
 
 # Add interest to the account
+mitchell_account.add_interest()
 
 # Print a statement
 mitchell_account.print_statement()
