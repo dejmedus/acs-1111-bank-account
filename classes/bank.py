@@ -1,5 +1,5 @@
 import uuid
-from bank_account import BankAccount, AccountType
+from classes.bank_account import BankAccount, AccountType
 
 
 class Bank():
