@@ -1,4 +1,10 @@
 import uuid
+from enum import Enum
+
+
+class AccountType(Enum):
+    DAILY = "daily"
+    SAVINGS = "savings"
 
 
 class BankAccount:
@@ -15,6 +21,8 @@ class BankAccount:
         8-digit bank account number
    balance : float
        current balance
+    account_type : AccountType
+       account type (daily/savings)
 
    Methods
    -------
@@ -34,8 +42,9 @@ class BankAccount:
         display account name, account number, and balance
    """
 
-    def __init__(self, full_name, account_number=str(uuid.uuid4())[:8], balance=0):
+    def __init__(self, full_name, account_type=AccountType.DAILY, account_number=str(uuid.uuid4())[:8], balance=0):
         self.full_name = full_name
+        self.account_type = account_type
         self.account_number = account_number
         self.balance = balance
 
@@ -59,6 +68,10 @@ class BankAccount:
         return self.balance
 
     def add_interest(self, interest=0.00083):
+
+        if self.account_type == "savings":
+            interest = 0.001
+
         accrued_amount = self.balance * interest
         self.balance += accrued_amount
 

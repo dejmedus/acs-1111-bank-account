@@ -1,5 +1,5 @@
 import uuid
-from bank_account import BankAccount
+from bank_account import BankAccount, AccountType
 
 
 class Bank():
@@ -48,12 +48,12 @@ account_action(account_number, function):
         self.name = name
         self.accounts = {}
 
-    def create_account(self, full_name, account_number=str(uuid.uuid4())[:8]):
+    def create_account(self, full_name, account_type=AccountType.DAILY, account_number=str(uuid.uuid4())[:8]):
         if len(full_name.strip()) == 0:
             print("Please enter a full name")
             return None
 
-        new_member = BankAccount(full_name, account_number, 0)
+        new_member = BankAccount(full_name, account_type, account_number, 0)
         self.accounts[account_number] = new_member
         return new_member
 

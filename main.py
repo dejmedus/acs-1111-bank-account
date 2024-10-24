@@ -1,9 +1,9 @@
-from bank import Bank
-from atm import ATM
+from classes.bank import Bank
+from classes.atm import ATM
 
 
 bank = Bank("Super Credit Union")
-bank.create_account("Mitchell", "31415920")
+bank.create_account("Mitchell", "savings", "31415920")
 
 atm = ATM(bank)
 
