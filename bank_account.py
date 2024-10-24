@@ -11,8 +11,8 @@ class BankAccount:
    ----------
    full_name : str
       full name of the bank account owner
-   account_number : uuid
-        bank account number
+   account_number : str
+        8-digit bank account number
    balance : float
        current balance
 
@@ -38,21 +38,23 @@ class BankAccount:
         display account name, account number, and balance
    """
 
-    def __init__(self, full_name, account_number=None, balance=0):
+    def __init__(self, full_name, account_number=str(uuid.uuid4())[:8], balance=0):
         self.full_name = full_name
-        self.account_number = uuid.uuid4()
+        self.account_number = account_number
         self.balance = balance
 
     def deposit(self, amount):
         self.balance += amount
-        print(f"Amount deposited: ${amount} new balance: ${self.balance}")
+        print(
+            f"Amount deposited: ${amount} new balance: ${self.balance:.2f}")
 
     def withdraw(self, amount):
         self.balance -= amount
-        print(f"Amount withdrawn: ${amount} New balance: ${self.balance}")
+        print(
+            f"Amount withdrawn: ${amount} New balance: ${self.balance:.2f}")
 
     def get_balance(self):
-        print(f"Current balance: ${self.balance}")
+        print(f"Current balance: ${self.balance:.2f}")
         return self.balance
 
     def add_interest(self, interest=0.00083):
@@ -62,6 +64,6 @@ class BankAccount:
     def print_statement(self):
         print(f"""
 {self.full_name}
-Account No.: ****{str(self.account_number)[30:]}
-Balance: ${self.balance}
+Account No.: ****{self.account_number[4:]}
+Balance: ${self.balance:.2f}
 """)
