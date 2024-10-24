@@ -31,6 +31,17 @@ deposit(account_number, amount):
 
 withdraw(account_number, amount):
     subtract amount from account balance
+
+statement(account_number):
+    displays account statement
+
+get_account(account_number):
+    if account of account number exists, returns the account
+
+    returns account instance or None
+
+account_action(account_number, function):
+    if account of account number exists, completes account action
 """
 
     def __init__(self, name):
@@ -38,7 +49,6 @@ withdraw(account_number, amount):
         self.accounts = {}
 
     def create_account(self, full_name, account_number=str(uuid.uuid4())[:8]):
-
         if len(full_name.strip()) == 0:
             raise Exception("Please enter a full name")
 
@@ -52,25 +62,39 @@ withdraw(account_number, amount):
             account.add_interest()
 
     def transfer(self, from_account_number, to_account_number, amount):
-        from_account = self.get_account(from_account_number)
-        to_account = self.get_account(to_account_number)
-        from_account.withdraw(amount)
-        to_account.deposit(amount)
+        withdraw_complete = self.account_action(
+            from_account_number, lambda account: account.withdraw(amount))
+
+        if withdraw_complete == False:
+            print("Transfer cancelled")
+            return
+
+        self.account_action(
+            to_account_number, lambda account: account.deposit(amount))
 
     def deposit(self, account_number, amount):
-        account = self.get_account(account_number)
-        account.deposit(amount)
+        self.account_action(
+            account_number, lambda account: account.deposit(amount))
 
     def withdraw(self, account_number, amount):
-        account = self.get_account(account_number)
-        account.withdraw(amount)
+        self.account_action(
+            account_number, lambda account: account.withdraw(amount))
 
     def statement(self, account_number):
-        account = self.get_account(account_number)
-        account.print_statement()
+        self.account_action(
+            account_number, lambda account: account.print_statement())
 
     def get_account(self, account_number):
         if account_number not in self.accounts:
-            raise Exception(f"No account number {account_number}")
+            print(f"No account number {account_number}")
+            return None
         else:
             return self.accounts[account_number]
+
+    def account_action(self, account_number, function):
+        account = self.get_account(account_number)
+
+        if account is None:
+            return
+
+        return function(account)
