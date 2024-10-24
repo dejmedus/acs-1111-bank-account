@@ -2,6 +2,11 @@
 
 A Python program that simulates a bank account, using object-oriented programming concepts.
 
+#### Run Commands
+
+- `python3 main.py` => the application & prompts for user input
+- `python3 test.py` => the manually created Bank and BankAccount instances & methods
+
 #### Resources
 - [Python class docstrings](https://www.programiz.com/python-programming/docstrings)
 - [UUIDs](https://docs.python.org/3/library/uuid.html)
@@ -11,11 +16,12 @@ A Python program that simulates a bank account, using object-oriented programmin
 #### Stretch Goals
 - [ ] Add account type attribute (checking/savings)
 - [x] Function loops over all accounts and calls `add_interest`
-- [ ] Create an "application" that prompts for an action
+- [x] Create an "application" that prompts for an action (atm.py)
    - [ ] Create account
-   - [ ] Statement
-   - [ ] Deposit
-   - [ ] Withdraw
+   - [x] Statement
+   - [x] Deposit
+   - [x] Withdraw
+   - [x] Transfer
 - [x] Create `Bank` class to store `BankAccounts` list
   - [x] `create_account()`
   - [x] `deposit()`
