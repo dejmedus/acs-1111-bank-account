@@ -18,18 +18,14 @@ class BankAccount:
 
    Methods
    -------
-    deposit(amount=0):
+    deposit(amount):
         add amount to balance and display new balance
 
-    withdraw(amount=0):
+    withdraw(amount):
         subtract amount from the balance and display new balance
 
-    get_balance(amount=0):
+    get_balance(amount=0) => balance : float
         display current balance
-
-        Returns
-        -------
-        balance : float
 
     add_interest(interest=0.00083):
         add interest to the balance
@@ -46,9 +42,12 @@ class BankAccount:
     def deposit(self, amount):
         self.balance += amount
         print(
-            f"Amount deposited: ${amount} new balance: ${self.balance:.2f}")
+            f"Amount deposited: ${amount} New balance: ${self.balance:.2f}")
 
     def withdraw(self, amount):
+        if amount > self.balance:
+            raise Exception("Insufficient funds")
+
         self.balance -= amount
         print(
             f"Amount withdrawn: ${amount} New balance: ${self.balance:.2f}")
