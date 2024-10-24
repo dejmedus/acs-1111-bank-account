@@ -39,10 +39,11 @@ class BankAccount:
         self.account_number = account_number
         self.balance = balance
 
-    def deposit(self, amount):
+    def deposit(self, amount, external=False):
         self.balance += amount
-        print(
-            f"Amount deposited: ${amount} New balance: ${self.balance:.2f}")
+        if external == False:
+            print(
+                f"Amount deposited: ${amount} New balance: ${self.balance:.2f}")
 
     def withdraw(self, amount):
         if amount > self.balance:

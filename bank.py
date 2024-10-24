@@ -50,12 +50,12 @@ account_action(account_number, function):
 
     def create_account(self, full_name, account_number=str(uuid.uuid4())[:8]):
         if len(full_name.strip()) == 0:
-            raise Exception("Please enter a full name")
+            print("Please enter a full name")
+            return None
 
         new_member = BankAccount(full_name, account_number, 0)
         self.accounts[account_number] = new_member
-        print(
-            f"New Account: {new_member.full_name} {new_member.account_number} added\n")
+        return new_member
 
     def add_interest(self):
         for account_number, account in self.accounts.items():
@@ -70,7 +70,7 @@ account_action(account_number, function):
             return
 
         self.account_action(
-            to_account_number, lambda account: account.deposit(amount))
+            to_account_number, lambda account: account.deposit(amount, True))
 
     def deposit(self, account_number, amount):
         self.account_action(

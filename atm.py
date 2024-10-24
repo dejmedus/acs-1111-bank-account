@@ -25,7 +25,7 @@ display_welcome_screen():
         self.bank = bank
 
     def display_home_screen(self, account_number):
-        options = """Select an option:
+        options = """\nSelect an option:
         1. View Balance
         2. Deposit
         3. Withdraw
@@ -44,12 +44,16 @@ display_welcome_screen():
                 amount = int(input("Withdrawal amount: "))
                 self.bank.withdraw(account_number, amount)
             elif selection == 4:
-                to_account_number = input("to_account_number")
-                amount = int(input("Deposit amount: "))
-                self.bank.transfer(
-                    account_number, to_account_number, amount)
+                to_account_number = input("Account number to transfer to: ")
+                to_account = self.bank.get_account(to_account_number)
+
+                if to_account == None:
+                    print(f"Cant find account #{to_account_number}")
+                else:
+                    amount = int(input("Deposit amount: "))
+                    self.bank.transfer(
+                        account_number, to_account_number, amount)
             elif selection == 5:
-                print('Thanks for banking!')
                 print('Logging out...')
                 quit()
             else:
@@ -58,14 +62,27 @@ display_welcome_screen():
     def display_welcome_screen(self):
         print(f'\nWelcome to the {self.bank.name} ATM!\n')
 
-        name = input('Name: ')
-        account_number = input('Account #: ')
+        account_number = None
+        while account_number == None:
+            selection = input("Do you have an account? Y/n ")
+            if selection.lower() in ["n", "no"]:
 
-        found_account = self.bank.get_account(account_number)
+                print("Please create an account")
+                full_name = input("Full Name: ")
+                new_account = self.bank.create_account(full_name)
 
-        if not found_account or found_account.full_name != name:
-            print("Your details were incorrect. Please try again.")
-            self.display_welcome_screen()
+                if new_account:
+                    account_number = new_account.account_number
+            else:
+                print("Please login")
+                name = input('Name: ')
+                account_number = input('Account #: ')
 
-        else:
-            self.display_home_screen(account_number)
+                found_account = self.bank.get_account(account_number)
+
+                if not found_account or found_account.full_name != name:
+                    print("Your details were incorrect. Please try again.")
+                else:
+                    account_number = found_account.account_number
+
+        self.display_home_screen(account_number)
