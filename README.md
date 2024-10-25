@@ -17,18 +17,3 @@ The manually created Bank and BankAccount instances & methods
 The application & prompts for user input (`python3 main.py`)
 ![Application](./screenshots/application.png)
 
-#### Stretch Goals
-- [x] Add account type attribute (checking/savings)
-- [x] Function loops over all accounts and calls `add_interest`
-- [x] Create an "application" that prompts for an action (atm.py)
-   - [x] Create account
-   - [x] Statement
-   - [x] Deposit
-   - [x] Withdraw
-   - [x] Transfer
-- [x] Create `Bank` class to store `BankAccounts` list
-  - [x] `create_account()`
-  - [x] `deposit()`
-  - [x] `withdraw()`
-  - [x] `transfer()`
-  - [x] `statement()`
