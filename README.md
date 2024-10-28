@@ -9,11 +9,17 @@ A Python program that simulates a bank account, using object-oriented programmin
 - [Round to 2 decimal places](https://stackoverflow.com/questions/5202233/how-to-change-39-54484700000000-to-39-54-and-using-python)
 - [Enums in Python](https://docs.python.org/3/library/enum.html)
 
-#### test.py
+#### How to run
+
 The manually created Bank and BankAccount instances & methods
-(`python3 test.py`)
+``` zsh
+python3 test.py
+```
 ![Working methods](./screenshots/methods.png)
-#### main.py
-The application & prompts for user input (`python3 main.py`)
+
+The application & prompts for user input
+``` zsh
+python3 main.py
+``` 
 ![Application](./screenshots/application.png)
 
